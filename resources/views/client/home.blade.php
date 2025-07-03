@@ -25,6 +25,7 @@
                     <li><a href="">Citizen </a></li>
                     <li><a href="">Rado </a></li>
                     <li><a href="">Seiko </a></li>
+                    <li><a href="">Tamtai </a></li>
                 </ul>
             </li>
             <li> <a href="">NỮ</a>
