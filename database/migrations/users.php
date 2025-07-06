@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone')->nullable();      // ➕ SĐT
+            $table->string('address')->nullable();    // ➕ Địa chỉ
+            $table->enum('role', ['customers', 'admin'])->default('customers'); // ➕ Phân quyền (tùy chọn)
             $table->rememberToken();
             $table->timestamps();
         });

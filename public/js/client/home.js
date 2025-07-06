@@ -1,56 +1,52 @@
-//header
-const header  = document.querySelector("header")
-window.addEventListener("scroll", function(){
-  x = window.pageYOffset  //cuộn dọc
-  //console.log(x)
-  if (x>0){
-    header.classList.add("sticky")
-  }
-  else{
-    header.classList.remove("sticky")
-  }
-})
+// //header
+// const header  = document.querySelector("header")
+// window.addEventListener("scroll", function(){
+//   x = window.pageYOffset  //cuộn dọc
+//   //console.log(x)
+//   if (x>0){
+//     header.classList.add("sticky")
+//   }
+//   else{
+//     header.classList.remove("sticky")
+//   }
+// })
 
 
-//login
-const loginIcon = document.getElementById("login-icon");
-const loginOverlay = document.getElementById("login-overlay");
-const loginForm = document.getElementById("login-form");
-const registerForm = document.getElementById("register-form");
-const toRegisterBtn = document.getElementById("dangky");
-const toLoginBtn = document.getElementById("dangnhap");
+// //login
+// const loginIcon = document.getElementById("login-icon");
+// const loginOverlay = document.getElementById("login-overlay");
+// const loginForm = document.getElementById("login-form");
+// const registerForm = document.getElementById("register-form");
+// const toRegisterBtn = document.getElementById("dangky");
+// const toLoginBtn = document.getElementById("dangnhap");
 
-// Click vào icon người dùng => hiện form đăng nhập
-loginIcon.addEventListener("click", function (e) {
-  e.preventDefault();
-  loginOverlay.style.display = "flex";
-  loginForm.style.display = "block";
-  registerForm.style.display = "none";
-});
+// // Click vào icon người dùng => hiện form đăng nhập
+// loginIcon.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   loginOverlay.style.display = "flex";
+//   loginForm.style.display = "block";
+//   registerForm.style.display = "none";
+// });
 
-// Click vào vùng nền tối => ẩn form
-loginOverlay.addEventListener("click", function (e) {
-  if (e.target === loginOverlay) {
-    loginOverlay.style.display = "none";
-  }
-});
+// // Click vào vùng nền tối => ẩn form
+// loginOverlay.addEventListener("click", function (e) {
+//   if (e.target === loginOverlay) {
+//     loginOverlay.style.display = "none";
+//   }
+// });
 
-// Click nút "Đăng ký" => chuyển sang form đăng ký
-toRegisterBtn.addEventListener("click", function () {
-  loginForm.style.display = "none";
-  registerForm.style.display = "block";
+// // Click nút "Đăng ký" => chuyển sang form đăng ký
+// toRegisterBtn.addEventListener("click", function () {
+//   loginForm.style.display = "none";
+//   registerForm.style.display = "block";
   
-});
+// });
 
-// Click nút "Đăng nhập" => chuyển lại form đăng nhập
-toLoginBtn.addEventListener("click", function () {
-  registerForm.style.display = "none";
-  loginForm.style.display = "block";
-});
-
-
-
-
+// // Click nút "Đăng nhập" => chuyển lại form đăng nhập
+// toLoginBtn.addEventListener("click", function () {
+//   registerForm.style.display = "none";
+//   loginForm.style.display = "block";
+// });
 
 
 
