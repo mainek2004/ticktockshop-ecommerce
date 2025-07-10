@@ -93,8 +93,11 @@ header:hover{
 
 
 .header_other {
-    flex: 1;
+    flex: 3;
     display: flex;
+    justify-content: flex-end; /* căn các icon về phải */
+    align-items: center;
+    gap: 20px; /* khoảng cách giữa các icon */
 }
 .header_other > li {
     padding: 0 12px;
@@ -202,102 +205,7 @@ header:hover{
   z-index: 999;
 }
 
-/* Form đăng nhập */
-.login-form {
-  background-color: white;
-  padding: 20px;
-  width: 300px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
-}
 
-.login-form input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-.login-form .btn-login {
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.login-form h3 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-.register-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;  /* căn giữa cả dòng nếu bạn muốn */
-  gap: 8px;            /*khoảng cách giữa các phần tử*/
-  margin-top: 15px;
-  font-size: 15px;
-}
-
-.register-link span {
-    /* chữ nằm cùng 1 dòng */
-  white-space: nowrap;       
-}
-
-.register-link .dk {
-  padding: 6px 10px;
-  background-color: black;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 4px;
-}
-
-/* Fỏm đăng ký */
-.register-form {
-  background-color: white;
-  padding: 20px;
-  width: 300px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
-}
-.register-form h3 {
-    text-align: center;
-    margin-bottom: 10px;
-}
-.register-form input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-.register-form .btn-register{
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.login-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 15px;
-    font-size: 15px;
-}
-.login-link .dn{
-  padding: 6px 10px;
-  background-color: black;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 4px;
-}
 
 
 
