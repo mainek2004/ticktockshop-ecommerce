@@ -1,44 +1,40 @@
-<header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TickTock_Shop-ADMIN</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="css/index.css"> -->
+    <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
+
+
+</head>
+<body>
+    <header>
         <div class="logo">
             <img src="{{ asset('storage/logo2.png')}}" alt="logoShop">
         </div>
 
         <div class="header_menu">
-            <li> <a href="">THƯƠNG HIỆU</a>
-                <ul class="sub_TH">
+            <li> <a href="">QUẢN LÝ SẢN PHẨM</a>
+                <!-- <ul class="sub_TH">
                     <li><a href="">Casio </a></li>
                     <li><a href="">Rolex </a></li>
                     <li><a href="">Citizen </a></li>
                     <li><a href="">Rado </a></li>
                     <li><a href="">Seiko </a></li>
-                </ul>
+                </ul> -->
             </li>
-            <li> <a href="">NỮ</a>
-                <ul class="sub_Nu">
+            <li> <a href="">XỬ LÝ ĐƠN HÀNG</a>
+                <!-- <ul class="sub_Nu">
                     <li><a href="">Casio nữ</a></li>
                     <li><a href="">Rolex nữ</a></li>
                     <li><a href="">Citizen nữ</a></li>
                     <li><a href="">Rado nữ</a></li>
                     <li><a href="">Seiko nữ</a></li>
-                </ul>
-            </li>
-            <li> <a href="">NAM</a> 
-                <ul class="sub_Nam">
-                    <li><a href="">Casio nam</a></li>
-                    <li><a href="">Rolex nam</a></li>
-                    <li><a href="">Citizen nam</a></li>
-                    <li><a href="">Rado nam</a></li>
-                    <li><a href="">Seiko nam</a></li>
-                </ul>
-            </li>
-            <li> <a href="">CẶP ĐÔI</a>
-                <ul class="sub_Doi">
-                    <li><a href="">Casio cặp</a></li>
-                    <li><a href="">Rolex cặp</a></li>
-                    <li><a href="">Citizen cặp</a></li>
-                    <li><a href="">Rado cặp</a></li>
-                    <li><a href="">Seiko cặp</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li> <a title="Phụ kiện" href="">PHỤ KIỆN</a> </li>
             <li> <a href="">THÔNG TIN BẢO HÀNH</a> </li>
@@ -86,7 +82,6 @@
                         @include('client.auth.register')
                 </div>
             </li>
-            <li> <a  class="fa fa-shopping-bag" href=""></a></li>
             
             @auth
                 <li class="logout-item">
@@ -101,3 +96,19 @@
 
         </div>
     </header>
+
+    TRANG ADMIN
+
+
+
+</body>
+<script src="{{ asset('js/layouts/header.js') }}"></script>
+<script>
+    const IS_AUTHENTICATED = {{ auth()->check() ? 'true' : 'false' }};
+</script>
+<script src="{{ asset('js/layouts/auth.js') }}"></script>
+
+
+
+
+</html>

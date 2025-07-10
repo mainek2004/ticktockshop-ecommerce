@@ -10,33 +10,31 @@ use App\Http\Controllers\Controller;
 
 class ClientAuthController extends Controller
 {
+    
     public function showLoginForm()
     {
-        return view('client.auth.login');
+        return view('client.auth.login'); // hiển thị form như ảnh
     }
 
-    public function showRegisterForm()
+    public function login(Request $request)
     {
-        return view('client.auth.register');
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        $credentials['role'] = 'user';
+
+        if (Auth::attempt($credentials)) {
+            return redirect()-> route('client.home'); // tốt hơn nếu redirect về nơi người dùng đang cố truy cập
+        }
+
+        return back()->withErrors([
+            'email' => 'Email hoặc mật khẩu không đúng',
+        ]);
     }
 
-
-
-
-// public function login(Request $request)
-// {
-//     $credentials = $request->only('email', 'password');
-
-//     if (Auth::attempt($credentials)) {
-//         // Đăng nhập thành công
-//         return redirect()->intended('/client/home'); // hoặc route dashboard
-//     } else {
-//         // Sai thông tin
-//         return back()->withErrors([
-//             'login' => 'Sai tên đăng nhập hoặc mật khẩu',
-//         ])->withInput();
-//     }
-// }
 
 }
 

@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             BrandsSeeder::class,
             CategoriesSeeder::class,
-            ProductsSeeder::class
+            ProductsSeeder::class,
+            WatchstrapsSeeder::class
         ]);
     }
 }

@@ -37,8 +37,13 @@
     @include ('layouts.footer')
 </body>
 <script src="{{ asset('js/layouts/header.js') }}"></script>
-<script src="{{ asset('js/layouts/auth.js') }}"></script>
+<!-- <script src="{{ asset('js/layouts/auth.js') }}"></script> -->
 <script src="{{ asset('js/client/home.js') }}"></script>
+<script>
+    const IS_AUTHENTICATED = {{ auth()->check() ? 'true' : 'false' }};
+</script>
+<script src="{{ asset('js/layouts/auth.js') }}"></script>
+
 
 
 </html>
