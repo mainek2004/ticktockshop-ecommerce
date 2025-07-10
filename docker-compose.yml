@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    volumes:
+      - .:/var/www
+    ports:
+      - 8000:8000
+    depends_on:
+      - mysql
+    networks:
+      - laravel
+    stdin_open: true
+    tty: true
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ticktockshop
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - laravel
+  adminer:
+    image: adminer
+    container_name: laravel-adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    networks:
+      - laravel
+
+      
+
+networks:
+  laravel:
+    driver: bridge
+volumes:
+  mysql_data:
