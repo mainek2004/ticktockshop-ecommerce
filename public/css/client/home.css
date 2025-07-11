@@ -5,6 +5,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+
+main {
+    margin-top: 100px; /* hoặc đúng bằng chiều cao header */
+}   
+
 a {
     text-decoration: none;
     color: black;
@@ -34,6 +43,12 @@ header:hover{
     flex: 1;
     
 }
+
+.logo img {
+    max-height: 70px;
+    width: auto;
+}
+
 
 .header_menu {
     flex: 3;

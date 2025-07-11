@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->decimal('price');
+            $table->decimal('price', 12, 2);
             $table->string('imageUrl');
 
             //Khoa ngoai toi bang catagory

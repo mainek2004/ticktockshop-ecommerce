@@ -45,8 +45,13 @@
 
 <div class="header_other d-flex align-items-center gap-3">
     <li class="d-flex align-items-center position-relative" style="width: 100%; max-width: 300px;">
-        <input class="form-control form-control-sm me-2 w-100" placeholder="Tìm kiếm" type="text">
-        <i class="fas fa-search position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);"></i>
+    <form action="{{ route('tim-kiem') }}" method="GET" class="d-flex position-relative w-100" style="max-width: 300px;">
+        <input name="keyword" class="form-control form-control-sm me-2 w-100" placeholder="Tìm kiếm..." type="text" value="{{ request('keyword') }}">
+        <button type="submit" class="btn position-absolute" style="right: 0; top: 50%; transform: translateY(-50%);">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+
 
         <div class="search-history bg-white border mt-2 rounded p-2 shadow position-absolute" style="top: 100%; left: 0; z-index: 1000; width: 100%;">
             <h6 class="search-heading mb-2">Lịch sử tìm kiếm</h6>

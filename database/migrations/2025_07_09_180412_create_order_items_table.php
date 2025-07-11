@@ -21,9 +21,9 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->string('product_name');
-            $table->decimal('product_price');
+            $table->decimal('product_price', 12, 2);
             $table->integer('quantity');
-            $table->decimal('total_price');
+            $table->decimal('total_price', 12, 2);
             $table->timestamps();
         });
     }
