@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\client;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -13,7 +13,8 @@ class ClientAuthController extends Controller
         return view('client.auth.login');
     }
 
-    public function login(Request $request) {
+    public function login(Request $request) 
+    {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -48,13 +49,13 @@ class ClientAuthController extends Controller
     }
 
     public function logout(Request $request)
-        {
-            Auth::logout();
+    {
+        Auth::logout();
 
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-            return redirect('/'); // hoặc route('client.home') nếu anh có định danh
-        }
+        return redirect('/'); // hoặc route('client.home') nếu anh có định danh
+    }
 
 }

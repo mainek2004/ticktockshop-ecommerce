@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('order_number');
             $table->string('address');
-            $table->decimal('total_amount');
+            $table->decimal('total_amount',12 ,2);
             $table->enum('status', ['pending', 'comfirmed', 'shipping', 'deliveried', 'cancelled'])->default('pending');
             $table->timestamps();
         });
