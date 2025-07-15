@@ -23,10 +23,17 @@ class AdminAuthController extends Controller
     ]);
 
     $credentials = $request->only('email', 'password');
-    $credentials['role'] = 'admin';
 
     if (Auth::attempt($credentials)) {
-        return redirect()->route('admin.dashboard');
+        // ✅ Kiểm tra role ngay sau khi đăng nhập
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } else {
+            Auth::logout(); // 🚫 Không phải admin thì buộc đăng xuất
+            return redirect()->route('admin.login')->withErrors([
+                'email' => 'Tài khoản không có quyền truy cập'
+            ]);
+        }
     }
 
     return back()->withErrors(['email' => 'Sai thông tin đăng nhập']);
