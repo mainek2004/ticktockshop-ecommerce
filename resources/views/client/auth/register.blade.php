@@ -2,10 +2,17 @@
     <form action="{{ route('client.register') }}" method="POST">
         @csrf
         <h3>Đăng ký</h3>
+        @if ($errors->any() && session('register_error'))
+            <div style="color: red; margin-bottom: 10px">
+                @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                @endforeach
+            </div>
+        @endif
         <input type="text" name="name" placeholder="Họ tên" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Mật khẩu" required>
-        <input type="password" name="confirm-password" placeholder="Xác nhận mật khẩu" required>
+        <input type="password" name="password_confirmation" placeholder="Xác nhận mật khẩu" required>
 
         <button class="btn-register" type="submit">Đăng ký</button>
 

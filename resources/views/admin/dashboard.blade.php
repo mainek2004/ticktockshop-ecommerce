@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TickTock_Shop-ADMIN</title>
+    <title>TickTock_Shop - ADMIN DASHBOARD</title>
     <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- <link rel="stylesheet" href="css/index.css"> -->
     <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -18,26 +14,10 @@
         </div>
 
         <div class="header_menu">
-            <li> <a href="">QUẢN LÝ SẢN PHẨM</a>
-                <!-- <ul class="sub_TH">
-                    <li><a href="">Casio </a></li>
-                    <li><a href="">Rolex </a></li>
-                    <li><a href="">Citizen </a></li>
-                    <li><a href="">Rado </a></li>
-                    <li><a href="">Seiko </a></li>
-                </ul> -->
-            </li>
-            <li> <a href="">XỬ LÝ ĐƠN HÀNG</a>
-                <!-- <ul class="sub_Nu">
-                    <li><a href="">Casio nữ</a></li>
-                    <li><a href="">Rolex nữ</a></li>
-                    <li><a href="">Citizen nữ</a></li>
-                    <li><a href="">Rado nữ</a></li>
-                    <li><a href="">Seiko nữ</a></li>
-                </ul> -->
-            </li>
-            <li> <a title="Phụ kiện" href="">PHỤ KIỆN</a> </li>
-            <li> <a href="">THÔNG TIN BẢO HÀNH</a> </li>
+            <li><a href="#">QUẢN LÝ SẢN PHẨM</a></li>
+            <li><a href="#">XỬ LÝ ĐƠN HÀNG</a></li>
+            <li><a href="#">THÔNG TIN BẢO HÀNH</a></li>
+            <li><a href="#">ĐÁNH GIÁ</a></li>
         </div>
 
         <div class="header_other">
@@ -51,64 +31,24 @@
                     </ul>
                 </div>
             </li>
-            <!-- <li> <a title="Đăng nhập" class="fa fa-user" id="login-icon" href=""></a>
-                <div class="overlay" id="login-overlay">
 
-                    <------------------------------------Đăng nhập/ Đăng ký---------------------
-
-
-                </div>
- 
-            </li> -->
-
-            <!-- <li> <a title="Đăng nhập" class="fa fa-user" id="login-icon" href="javascript:void(0);"></a> -->
-             <li class="header-user">
-                    <i class="fa fa-user"></i>
-
-                    @auth
-                        <span class="user-name">{{ Auth::user()->name }}</span>
-                    @else
-                        <a title="Đăng nhập" id="login-icon" href="javascript:void(0);">Đăng nhập</a>
-                    @endauth
-                </li>
-
-
-
-                <div class="overlay" id="login-overlay">
-                        {{-- Form đăng nhập --}}
-                        @include('client.auth.login')
-
-                        {{-- Form đăng ký --}}
-                        @include('client.auth.register')
-                </div>
+            <li class="header-user">
+                <i class="fa fa-user"></i>
+                <span class="user-name">{{ Auth::user()->name }}</span>
             </li>
-            
-            @auth
-                <li class="logout-item">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="logout-btn">
-                            <i class="fa fa-sign-out-alt"></i>
-                        </button>
-                    </form>
-                </li>
-            @endauth
-
+            <li class="logout-item">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="logout-btn">
+                        <i class="fa fa-sign-out-alt"></i>
+                    </button>
+                </form>
+            </li>
         </div>
     </header>
 
-    TRANG ADMIN
+   
 
-
-
+    <script src="{{ asset('js/layouts/header.js') }}"></script>
 </body>
-<script src="{{ asset('js/layouts/header.js') }}"></script>
-<script>
-    const IS_AUTHENTICATED = {{ auth()->check() ? 'true' : 'false' }};
-</script>
-<script src="{{ asset('js/layouts/auth.js') }}"></script>
-
-
-
-
 </html>

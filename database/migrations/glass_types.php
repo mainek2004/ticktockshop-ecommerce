@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('watch_straps', function (Blueprint $table) {
+        Schema::create('glass_types', function (Blueprint $table) {
 
         $table->id();
         $table->string('name');
-        $table->string('material')->nullable(); // ví dụ: da, kim loại, cao su
+        $table->string('description')->nullable();
         $table->string('image')->nullable();
         $table->decimal('price', 10, 2)->nullable();
         $table->unsignedBigInteger('product_id')->nullable(); // nếu liên kết sản phẩm
@@ -23,13 +23,13 @@ return new class extends Migration
 
         $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
     });
-}
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('watch_straps');
+        Schema::dropIfExists('glass_types');
     }
 };
