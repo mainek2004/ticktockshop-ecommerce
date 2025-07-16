@@ -10,92 +10,66 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $categories = Category::all();
-        $brands = Brand::all();
-        $sort = request('sort');
+    public function filterProducts(Request $request)
+{
+    $categories = Category::all();
+    $brands = Brand::all();
 
-        $query = Product::query();
+    $categorySlug = $request->input('category');
+    $brandSlug = $request->input('brand');
+    $sort = $request->input('sort');
+    $priceRange = $request->input('price_range');
 
-        if ($sort === 'asc') {
-            $query->orderBy('price', 'asc');
-        } elseif ($sort === 'desc') {
-            $query->orderBy('price', 'desc');
-        }
+    $query = Product::query();
 
-        $products = $query->paginate(8);
-
-        return view('client.products', compact('products', 'categories', 'brands'));
-    }
-
-    public function filterByCategory($category)
-    {
-        $categories = Category::all();
-        $brands = Brand::all();
-        $sort = request('sort');
-
-        $query = Product::whereHas('category', function ($query) use ($category) {
-            $query->where('name', $category);
+    //  Xác định currentCategory từ slug
+    $currentCategory = null;
+    if ($categorySlug) {
+        $currentCategory = $categories->first(function ($cat) use ($categorySlug) {
+            return Str::slug($cat->name) === $categorySlug;
         });
 
-        if ($sort === 'asc') {
-            $query->orderBy('price', 'asc');
-        } elseif ($sort === 'desc') {
-            $query->orderBy('price', 'desc');
+        if ($currentCategory) {
+            $query->where('category_id', $currentCategory->id);
         }
-
-        $products = $query->paginate(8);
-
-        return view('client.products', compact('products', 'categories', 'brands'));
     }
 
-    public function filter($categoryParam, $brandParam)
-    {
-        $categories = Category::all();
-        $brands = Brand::all();
-        $sort = request('sort');
-        $priceRange = request('price_range'); 
-
-        $categoryParam = strtolower(trim($categoryParam));
-        $brandParam = strtolower(trim($brandParam));
-
-        $category = $categories->first(function ($cat) use ($categoryParam) {
-            return Str::slug($cat->name) === $categoryParam;
+    //  Xác định currentBrand từ slug
+    $currentBrand = null;
+    if ($brandSlug) {
+        $currentBrand = $brands->first(function ($br) use ($brandSlug) {
+            return Str::slug($br->name) === $brandSlug;
         });
 
-        $brand = $brands->first(function ($br) use ($brandParam) {
-            return Str::slug($br->name) === $brandParam;
-        });
-
-        if (!$category || !$brand) {
-            abort(404, 'Không tìm thấy danh mục hoặc thương hiệu');
+        if ($currentBrand) {
+            $query->where('brand_id', $currentBrand->id);
         }
-
-        $query = Product::where('category_id', $category->id)
-                    ->where('brand_id', $brand->id);
-
-        if ($priceRange) {
-            [$min, $max] = explode('-', $priceRange);
-            $query->whereBetween('price', [(int) $min, (int) $max]);
-        }
-
-        if ($sort === 'asc') {
-            $query->orderBy('price', 'asc');
-        } elseif ($sort === 'desc') {
-            $query->orderBy('price', 'desc');
-        }
-
-        $products = $query->paginate(8);
-
-        return view('client.products', [
-            'products' => $products,
-            'categories' => $categories,
-            'brands' => $brands,
-            'currentCategory' => $category,
-            'currentBrand' => $brand,
-            'selectedSort' => $sort,               
-            'selectedPriceRange' => $priceRange,   
-        ]);
     }
+
+    //  Lọc theo khoảng giá
+    if ($priceRange) {
+        [$min, $max] = explode('-', $priceRange);
+        $query->whereBetween('price', [(int) $min, (int) $max]);
+    }
+
+    //  Sắp xếp theo giá
+    if ($sort === 'asc') {
+        $query->orderBy('price', 'asc');
+    } elseif ($sort === 'desc') {
+        $query->orderBy('price', 'desc');
+    }
+
+    $products = $query->paginate(8);
+
+    return view('client.products', [
+        'products' => $products,
+        'categories' => $categories,
+        'brands' => $brands,
+        'currentCategory' => $currentCategory,
+        'currentBrand' => $currentBrand,
+        'selectedSort' => $sort,
+        'selectedPriceRange' => $priceRange,
+    ]);
+}
+
 }

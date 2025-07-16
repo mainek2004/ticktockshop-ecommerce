@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-     {
+    {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();      // ➕ SĐT
             $table->string('address')->nullable();    // ➕ Địa chỉ
-            $table->enum('role', ['user', 'admin'])->default('user'); // ➕ Phân quyền (tùy chọn)
+            $table->enum('role', ['customers', 'admin'])->default('customers'); // ➕ Phân quyền (tùy chọn)
             $table->rememberToken();
             $table->timestamps();
         });
@@ -49,4 +49,4 @@ return new class extends Migration
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
-};  
+};

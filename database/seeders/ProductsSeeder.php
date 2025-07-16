@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use Illuminate\Support\Facades\DB;
 
 class ProductsSeeder extends Seeder
 {
@@ -23,19 +24,19 @@ class ProductsSeeder extends Seeder
             }
 
             $products = [
-                ['Casio LTP-VT01L-1B2UDF', 'Casio1.jpg', 1100000, 'Thiết kế cổ điển với dây da đen, phù hợp phong cách thanh lịch, giản dị.'],
+                ['Casio LTP-VT01L-1B2UDF', 'Casio1.jpg', 970000, 'Thiết kế cổ điển với dây da đen, phù hợp phong cách thanh lịch, giản dị.'],
                 ['Casio LTP-V007L-7B', 'Casio2.webp', 1130000, 'Mặt vuông nhỏ gọn, dây da nâu tinh tế cho quý cô yêu nét hoài cổ.'],
-                ['Casio LTP-VT01D-2B', 'Casio3.webp', 1160000, 'Tone xanh navy dịu mắt kết hợp dây kim loại sáng bóng, nữ tính và hiện đại.'],
-                ['Casio LTP-E157MR-9ADF', 'Casio4.webp', 1190000, 'Màu vàng hồng nổi bật, dây kim loại dạng lưới cho phong cách thời thượng.'],
-                ['Casio LTP-V002GL-7BUDF', 'Casio5.webp', 1220000, 'Kiểu mặt tròn cổ điển, dây da nâu và mặt trắng trang nhã, dễ phối đồ.'],
-                ['Casio LTP-V300L-7A', 'Casio6.webp', 1250000, 'Đồng hồ 3 kim phụ với dây da trắng sang trọng, nữ tính và đa dụng.'],
-                ['Casio LTP-1358D-2AVDF', 'Casio7.webp', 1280000, 'Phong cách năng động với mặt xanh lam cá tính, vỏ và dây thép không gỉ.'],
-                ['Casio LTP-V300D-7A2', 'Casio8.webp', 1310000, 'Thiết kế đa năng với lịch thứ, ngày và 24 giờ, dây kim loại bạc.'],
-                ['Casio LTP-E414SG-9ADF', 'Casio9.jpeg', 1340000, 'Viền vàng phối dây bạc sang trọng, tôn lên nét tinh tế của cổ tay.'],
+                ['Casio LTP-VT01D-2B', 'Casio3.webp', 2160000, 'Tone xanh navy dịu mắt kết hợp dây kim loại sáng bóng, nữ tính và hiện đại.'],
+                ['Casio LTP-E157MR-9ADF', 'Casio4.webp', 3190000, 'Màu vàng hồng nổi bật, dây kim loại dạng lưới cho phong cách thời thượng.'],
+                ['Casio LTP-V002GL-7BUDF', 'Casio5.webp', 12200000, 'Kiểu mặt tròn cổ điển, dây da nâu và mặt trắng trang nhã, dễ phối đồ.'],
+                ['Casio LTP-V300L-7A', 'Casio6.webp', 5250000, 'Đồng hồ 3 kim phụ với dây da trắng sang trọng, nữ tính và đa dụng.'],
+                ['Casio LTP-1358D-2AVDF', 'Casio7.webp', 880000, 'Phong cách năng động với mặt xanh lam cá tính, vỏ và dây thép không gỉ.'],
+                ['Casio LTP-V300D-7A2', 'Casio8.webp', 610000, 'Thiết kế đa năng với lịch thứ, ngày và 24 giờ, dây kim loại bạc.'],
+                ['Casio LTP-E414SG-9ADF', 'Casio9.jpeg', 13400000, 'Viền vàng phối dây bạc sang trọng, tôn lên nét tinh tế của cổ tay.'],
                 ['Casio SHE-4052PGL-7AUDF', 'Casio10.png', 1370000, 'Mặt số được đính đá pha lê, dây da nâu nhã nhặn, thanh lịch và thời trang.'],
                 ['Casio LTP-V002D-7BUDF', 'Casio11.png', 1400000, 'Dây kim loại truyền thống, mặt trắng nền xanh dịu dàng, phù hợp đi làm.'],
                 ['Casio LTP-E157D-1ADF', 'Casio12.png', 1430000, 'Tông đen bạc cá tính, thiết kế mỏng nhẹ, đơn giản nhưng nổi bật.'],
-                ['Casio LTP-V300L-2A2', 'Casio13.jpg', 1460000, 'Dây da xanh pastel lạ mắt, mặt số đa chức năng cho quý cô hiện đại.'],
+                ['Casio LTP-V300L-2A2', 'Casio13.jpg', 14600000, 'Dây da xanh pastel lạ mắt, mặt số đa chức năng cho quý cô hiện đại.'],
                 ['Casio LTP-V002GL-1BUDF', 'Casio14.jpg', 1490000, 'Mặt trắng, dây da đen và viền vàng cổ điển, thích hợp phong cách công sở.'],
                 ['Casio LTP-V005D-1AUDF', 'Casio15.png', 1520000, 'Mặt đen kết hợp dây thép không gỉ bạc, đơn giản nhưng cuốn hút.'],
                 ['Casio LTP-V002L-7B3UDF', 'Casio16.png', 1550000, 'Dây da nâu sáng cùng mặt số trắng nhẹ nhàng, phù hợp phong cách nữ tính.'],
@@ -46,20 +47,9 @@ class ProductsSeeder extends Seeder
                 ['Casio LTP-V300L-1A', 'Casio21.png', 1700000, 'Mặt đen huyền bí, dây da đen cho phong cách mạnh mẽ, cá tính.'],
                 ['Casio LTP-VT01D-1BUDF', 'Casio22.png', 1730000, 'Sự kết hợp hoàn hảo giữa nét cổ điển và hiện đại với tone đen bạc.'],
                 ['Casio LTP-V005L-2BUDF', 'Casio23.jpg', 1760000, 'Dây da xanh navy trẻ trung, thiết kế đơn giản dễ đeo.'],
-            ['Casio LTP-V002GL-9AUDF', 'Casio24.png', 1790000, 'Màu vàng đồng chủ đạo, mặt số cổ điển, thích hợp mọi lứa tuổi.'],
-        ];
-
-        foreach ($products as [$name, $image, $price, $description]) {
-            Product::create([
-                'name' => $name,
-                'description' => $description,
-                'price' => $price,
-                'image' => $image,
-                'category_id' => $category->id,
-                'brand_id' => $brand->id,
-                'warranty_months' => 12,
-            ]);
-        }   
+                ['Casio LTP-V002GL-9AUDF', 'Casio24.png', 5790000, 'Màu vàng đồng chủ đạo, mặt số cổ điển, thích hợp mọi lứa tuổi.'],
+            ];    
+   
 // -----------Rolex nữ----------
         $category = Category::where('name', 'Nữ')->first();
         $brand  = Brand::where('name', 'Rolex')->first();
@@ -96,8 +86,44 @@ class ProductsSeeder extends Seeder
             ['Rolex Datejust 31 Gold Diamond', 'Rolex24.jpg', 430000000, 'Vàng nguyên khối kết hợp kim cương thiên nhiên mang đến đỉnh cao sang trọng.'],
         ];
 
+// -----------Rado nữ----------
+        $category = Category::where('name', 'Nữ')->first();
+        $brand = Brand::where('name', 'Rado')->first();
+
+        if (!$category || !$brand) {
+            $this->command->error('Không tìm thấy categories "Nữ" hoặc brands "Rado"!');
+            return;
+        }
+
+        $products = [
+            ['Rado Chic Quartz White', 'Rado1.jpg', 15800000, 'Thiết kế đơn giản với mặt số trắng trang nhã, phù hợp với phong cách tối giản.'],
+            ['Rado Petite Black Leather', 'Rado2.jpg', 42100000, 'Mặt đen cổ điển kết hợp dây da mềm mại, dễ phối đồ hàng ngày.'],
+            ['Rado Rose Mini Dial', 'Rado3.jpg', 26800000, 'Thiết kế mặt nhỏ với viền hồng thanh lịch cho cổ tay mảnh mai.'],
+            ['Rado Basic Silver Mesh', 'Rado4.jpg', 33700000, 'Dây kim loại dạng lưới bạc thời trang, nhẹ tay và thoáng khí.'],
+            ['Rado Pearl Dial Slim', 'Rado5.jpg', 11700000, 'Mặt số xà cừ lấp lánh nhẹ nhàng, nữ tính cho phong cách thanh lịch.'],
+            ['Rado Classic Brown Strap', 'Rado6.jpg', 46300000, 'Tone nâu sang trọng, dây da thật với mặt tròn cổ điển.'],
+            ['Rado Simple Ceramic Look', 'Rado7.jpg', 18500000, 'Dây trắng giả ceramic tinh tế và thời trang.'],
+            ['Rado Quartz Champagne Gold', 'Rado8.jpg', 24900000, 'Mặt số ánh vàng champagne phối kim chỉ ánh kim nổi bật.'],
+            ['Rado Fashion Navy Dial', 'Rado9.jpg', 31200000, 'Mặt số xanh navy trẻ trung, phối cùng dây trắng hiện đại.'],
+            ['Rado Violet Elegant', 'Rado10.jpg', 40100000, 'Sắc tím pastel nhẹ nhàng cho nàng yêu màu sắc độc đáo.'],
+            ['Rado Coral Pink Strap', 'Rado11.jpg', 12700000, 'Dây da màu hồng san hô cá tính kết hợp mặt số đơn giản.'],
+            ['Rado Floral Engraved Dial', 'Rado12.jpg', 35800000, 'Mặt số hoa văn khắc tinh xảo, thích hợp cho quý cô yêu nghệ thuật.'],
+            ['Rado Green Olive Dial', 'Rado13.jpg', 19400000, 'Mặt số xanh olive lạ mắt, kết hợp kim vàng cá tính.'],
+            ['Rado Silver White Crystal', 'Rado14.jpg', 10100000, 'Đính đá tinh tế tại các cọc số, thiết kế sáng và tinh khôi.'],
+            ['Rado Blue Starry Night', 'Rado15.jpg', 27400000, 'Mặt xanh ánh kim như bầu trời đêm, dây đeo ánh bạc.'],
+            ['Rado Minimal Gold-Tone', 'Rado16.jpg', 49900000, 'Toàn bộ đồng hồ mạ vàng, nổi bật và sang trọng.'],
+            ['Rado Ceramic Inspired Nude', 'Rado17.jpg', 13500000, 'Tone nude trang nhã, thiết kế bo tròn nhẹ nhàng.'],
+            ['Rado Dual Tone Silver-Gold', 'Rado18.jpg', 38800000, 'Phối màu bạc – vàng cổ điển, phong cách thanh lịch.'],
+            ['Rado Ruby Accent Dial', 'Rado19.jpg', 22800000, 'Điểm xuyết đá đỏ ruby tại các vị trí giờ, tăng vẻ quý phái.'],
+            ['Rado Touch Screen Slim', 'Rado20.jpg', 30900000, 'Thiết kế mặt cảm ứng không nút bấm, hiện đại, gọn nhẹ.'],
+            ['Rado Lady Date White', 'Rado21.jpg', 19200000, 'Thiết kế có lịch ngày, dây trắng thời thượng.'],
+            ['Rado Moonphase Chic', 'Rado22.jpg', 43300000, 'Mặt số hiển thị lịch trăng, biểu tượng sự dịu dàng và mộng mơ.'],
+            ['Rado Lush Pink Ceramic', 'Rado23.jpg', 25300000, 'Phiên bản giả ceramic màu hồng ngọt ngào, tinh tế.'],
+            ['Rado Diamond Silver Mesh', 'Rado24.jpg', 14700000, 'Mặt đính đá cùng dây lưới kim loại bạc cao cấp, thích hợp dạ tiệc.'],
+        ];
+
         foreach ($products as [$name, $image, $price, $description]) {
-            Product::create([
+            DB::table('products')->insert([
                 'name' => $name,
                 'description' => $description,
                 'price' => $price,
@@ -105,7 +131,9 @@ class ProductsSeeder extends Seeder
                 'category_id' => $category->id,
                 'brand_id' => $brand->id,
                 'warranty_months' => 12,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
-        }   
+        }    
     }
 }

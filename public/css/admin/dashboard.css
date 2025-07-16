@@ -1,0 +1,379 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 12px 50px ;
+    height: 95px;
+    width: 100%;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(225, 225, 225, 0.3) ;
+}
+header.sticky{
+    background-color: white;
+}
+header:hover{
+    background-color: white;
+}
+
+.logo {
+    flex: 1;
+    
+}
+
+.header_menu {
+    flex: 3;
+    display: flex;
+
+}
+.header_menu > li {
+    padding: 0 12px;
+    position: relative;
+}
+.header_menu > li:hover .sub_Nu,
+.header_menu > li:hover .sub_Nam,
+.header_menu > li:hover .sub_TH,
+.header_menu > li:hover .sub_Doi {
+    visibility: visible;
+    top: 30px;
+}
+
+.header_menu > li a {
+    font-weight: bold;
+    display: block;
+    line-height: 25px;
+}
+
+.sub_Nu,
+.sub_Nam,
+.sub_TH,
+.sub_Doi {
+    position: absolute;
+    list-style: none;
+    width: 120px;
+    padding: 10px ;
+    border: 1px solid ;
+    box-sizing: border-box;
+    visibility: hidden;
+    top: 50px;
+    transition: 0.3s;
+    z-index: 999;
+    background-color: whitesmoke;
+}
+.sub_Nu > li a,
+.sub_Nam > li a,
+.sub_TH > li a,
+.sub_Doi > li a {
+    font-size: 15px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #675959;
+
+}
+.sub_Nu > li a:hover,
+.sub_Nam > li a:hover,
+.sub_TH > li a:hover,
+.sub_Doi > li a:hover{
+    background-color: #ededed;
+    padding-left: 0;
+}
+
+
+.header_other {
+    flex: 1;
+    display: flex;
+}
+.header_other > li {
+    padding: 0 12px;
+
+}
+.header_other > li input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #333;
+    position: relative;
+    background-color: transparent;
+    outline: none;
+
+}
+.header_other > li input:focus ~ .search-history
+{
+    display: block;
+}
+.header_other > li:first-child  {
+    position: relative;
+}
+.header_other > li:first-child i {
+    position: absolute;
+    right: 10px;
+}
+.header_other .search-history {
+    position:absolute;
+    top: 22px;    
+    background-color: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 0 0 3px;
+    z-index: 999;
+    display: none;
+
+}
+.search-history .search-heading {
+    margin: 6px 6px;
+    font-size: 14px;
+    font-weight: lighter;
+    
+}
+.search-history-list {
+    list-style: none;
+    padding-left:0 ;
+    padding: 0 12px 10px 12px;
+    line-height: 25px;
+}
+.item:hover {
+    background-color: #dcdcdc;
+}
+
+.aspect-ratio-169 {
+    display: block;
+    position: relative;
+    padding-top: 56.25%;
+    transition: 0.3s;
+}
+.aspect-ratio-169 img {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#slide{
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+    overflow: hidden;
+
+}
+
+.dot-slide {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.dot {
+    height: 16px;
+    width: 16px;
+    background-color: #b6b1b1;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.dot.active {
+    background-color: #333;
+}
+
+/* khung chung */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Form đăng nhập */
+.login-form {
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.login-form input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.login-form .btn-login {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-form h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.register-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* căn giữa cả dòng nếu bạn muốn */
+  gap: 8px;            /*khoảng cách giữa các phần tử*/
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.register-link span {
+    /* chữ nằm cùng 1 dòng */
+  white-space: nowrap;       
+}
+
+.register-link .dk {
+  padding: 6px 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+/* Fỏm đăng ký */
+.register-form {
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+.register-form h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.register-form input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.register-form .btn-register{
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.login-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+.login-link .dn{
+  padding: 6px 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+
+/* -----------------------Body------------------------ */
+
+
+/* -----------------------Footer---------------------- */
+footer{
+    text-align: center;
+}
+.footer-container{
+    text-align: center;
+    align-items: center;
+    padding: 150px 0 50px 0;
+}
+.app-google{
+    margin: 50px;
+}
+.app-google img{
+    height: 50px;
+}
+.footer-container p{
+    line-height: 20px;
+    letter-spacing: 1px;
+    font-size: 17px;
+    color: #000;
+    font-weight: bold;
+}
+.footer-container input{
+    margin-top: 50px;
+    border: none;
+    border-bottom: 1px solid #000;
+    padding-bottom: 20px;
+    width: 400px;
+    text-align: center;
+    outline: none;
+}
+.footer-items{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 70px;
+    list-style-type: none;
+}
+.footer-items img{
+    height: 50px;
+}
+.footer-items li {
+    text-decoration: none;
+    padding: 0 12px;
+    position: relative;
+}
+.footer-items li::after{
+    content:"";
+    display: block;
+    width: 1px;
+    height: 80%;
+    background: #cccccc;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.footer-items li:last-child::after{
+    display: none;
+}
+.footer-items li:last-child a{
+    margin-right: 12px;
+    color: #333;
+}
+.footer-bottom{
+    margin: 20px 0;
+}

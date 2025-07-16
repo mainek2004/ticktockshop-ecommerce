@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Categories;
 
 
 class CategoriesSeeder extends Seeder
@@ -18,6 +19,6 @@ class CategoriesSeeder extends Seeder
 
         foreach ($category as $name) {
             Category::create(['name' => $name]);
-            }
+        }
     }
 }

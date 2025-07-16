@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
-
+    @vite('resources/js/app.js')
 </head>
 <body>
     <header>
@@ -26,7 +26,7 @@
                     <li><a href="#">Seiko</a></li>
                 </ul>
             </li>
-            <li><a href="#">NỮ</a>
+            <li><a href="#">NỮ</a>  
                 <ul class="sub_Nu">
                     <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'casio']) }}">Casio nữ</a></li>
                     <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'rolex']) }}">Rolex nữ</a></li>
@@ -130,7 +130,6 @@
             </div>
         </div>
     </section>
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/client/home.js') }}"></script>
 </body>
 </html>
