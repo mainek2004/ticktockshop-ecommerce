@@ -15,7 +15,6 @@ use App\Http\Controllers\WarrantyController;
 //     return view('admin.dashboard');
 // });
 
-
 Route::get('/', function () { 
     if (auth()->check()) {
         if (auth()->user()->role === 'admin') {
@@ -26,7 +25,11 @@ Route::get('/', function () {
     }
 
     return view('client.home'); // fallback nếu chưa login
-});
+    })->name('home');
+    
+Route::get('/products', [ProductController::class, 'filterProducts'])->name('products.filter');
+Route::get('/quick-view/{slug}', [ProductController::class, 'quickView']);
+
 
     //User routes
 Route::get('/login', [LoginAuthController::class, 'showLoginForm'])->name('client.login');

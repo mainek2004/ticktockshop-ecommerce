@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
             loginForm.style.display = "block";
         });
     }
-
     // Xử lý nút tra cứu bảo hành
     if (button && form) {
         button.addEventListener("click", function () {

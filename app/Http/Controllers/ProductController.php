@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     public function filterProducts(Request $request)
-{
+    {
     $categories = Category::all();
     $brands = Brand::all();
 
@@ -69,7 +69,11 @@ class ProductController extends Controller
         'currentBrand' => $currentBrand,
         'selectedSort' => $sort,
         'selectedPriceRange' => $priceRange,
-    ]);
-}
-
+        ]);
+    }
+    public function quickView($slug)
+    {
+        $product = Product::where('slug', $slug)->with('category', 'brand')->firstOrFail();
+        return view('client.products.quick_view', compact('product'));
+    }
 }
