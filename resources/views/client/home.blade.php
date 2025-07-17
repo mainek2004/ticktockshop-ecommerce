@@ -6,7 +6,6 @@
     <title>TickTock_Shop</title>
     <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- <link rel="stylesheet" href="css/index.css"> -->
     <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
 
     @if (session('error'))
@@ -34,15 +33,16 @@
                     <li><a href="">Seiko </a></li>
                 </ul>
             </li>
-            <li> <a href="">NỮ</a>
+            <li><a href="#">NỮ</a>
                 <ul class="sub_Nu">
-                    <li><a href="">Casio nữ</a></li>
-                    <li><a href="">Rolex nữ</a></li>
-                    <li><a href="">Citizen nữ</a></li>
-                    <li><a href="">Rado nữ</a></li>
-                    <li><a href="">Seiko nữ</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'casio']) }}">Casio nữ</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'rolex']) }}">Rolex nữ</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'rado']) }}">Rado nữ</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'citizen']) }}">Citizen nữ</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'seiko']) }}">Seiko nữ</a></li>
                 </ul>
             </li>
+
             <li> <a href="">NAM</a> 
                 <ul class="sub_Nam">
                     <li><a href="">Casio nam</a></li>

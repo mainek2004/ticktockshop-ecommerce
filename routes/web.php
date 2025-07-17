@@ -1,45 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\LoginAuthController;
+use App\Http\Controllers\ProductController;
+
+Route::get('/', function () {
+    return view('client.home');
+})->name('home'); 
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/category/{category}', [ProductController::class, 'filterByCategory'])->name('products.category');
+Route::get('/products/filter/{category}/{brand}', [ProductController::class, 'filter'])->name('products.filter');
 
 
-Route::get('/', function () { 
-    if (auth()->check()) {
-        if (auth()->user()->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } elseif (auth()->user()->role === 'user') {
-            return redirect()->route('client.home');
-        }
-    }
+// Client Auth
+// Route::prefix('client')->group(function () {
+//     Route::get('login', [ClientAuthController::class, 'showLoginForm'])->name('client.login');
+//     Route::post('login', [ClientAuthController::class, 'login']);
+//     Route::get('register', [ClientAuthController::class, 'showRegisterForm'])->name('client.register');
+//     Route::post('register', [ClientAuthController::class, 'register']);
+// });
 
-    return view('client.home'); // fallback nếu chưa login
-});
-
-    //User routes
-Route::get('/login', [LoginAuthController::class, 'showLoginForm'])->name('client.login');
-Route::post('/login', [LoginAuthController::class, 'login'])->name('client.login');
-Route::post('/client/register', [LoginAuthController::class, 'register'])->name('client.register');
-
-
-// ✅ Route dành cho người dùng (sau khi đăng nhập)
-Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('client.home');
-    })->name('client.home');
-});
-
-// ✅ Route dành cho admin
-//Admin routes
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-});
-
-// ✅ Đăng xuất (áp dụng chung cho cả user và admin)
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');
+// Admin Auth
+// Route::prefix('admin')->group(function () {
+//     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+//     Route::post('login', [AdminAuthController::class, 'login']);
+//     Route::get('register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.register');
+//     Route::post('register', [AdminAuthController::class, 'register']);
+// });

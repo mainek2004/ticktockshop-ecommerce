@@ -23,11 +23,15 @@ class DatabaseSeeder extends Seeder
         $this->call ([
             UsersSeeder::class,
             BrandsSeeder::class,
+
             CategoriesSeeder::class,
             ProductsSeeder::class,
             WatchStrapsSeeder::class,
             WatchBoxesSeeder::class,
             GlassTypesSeeder::class
+
+            
+            
         ]);
     }
 }
