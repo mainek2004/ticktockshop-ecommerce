@@ -42,4 +42,11 @@ window.addEventListener("scroll", function(){
     dotItem[index].classList.add("active")
 
   }
-  setInterval(imgSlide, 5000)
+  setInterval(imgSlide, 5000);
+
+
+
+  
+
+
+

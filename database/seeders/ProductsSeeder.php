@@ -259,6 +259,168 @@ class ProductsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+        }
+        //---------------------------Casio cặp--------------------------
+        $category = Category::where('name', 'Cặp đôi')->first();
+        $brand = Brand::where('name', 'Casio')->first();
+
+        if (!$category || !$brand) {
+            $this->command->error('Không tìm thấy categories "Cặp đôi" hoặc brands "Casio"!');
+            return;
+        }
+
+        $products = [
+            ['Casio Couple Classic Black', 'CasioCouple1.jpg', 3120000, 'Thiết kế tối giản, dây cao su đen bền bỉ – thích hợp cho cặp đôi yêu thích sự giản dị.'],
+            ['Casio His & Her Silver', 'CasioCouple2.jpg', 4650000, 'Cặp đôi dây kim loại bạc sang trọng, mặt số đơn giản phù hợp đi làm và hẹn hò.'],
+            ['Casio Romantic Rose Gold', 'CasioCouple3.jpg', 5920000, 'Thiết kế viền vàng hồng thời thượng, dành cho cặp đôi yêu phong cách nhẹ nhàng.'],
+            ['Casio Sporty Duo Black-Gold', 'CasioCouple4.jpg', 5290000, 'Cặp đôi phong cách thể thao, mặt đen viền vàng khỏe khoắn và cá tính.'],
+            ['Casio Minimal Brown Leather', 'CasioCouple5.jpg', 3890000, 'Dây da nâu thanh lịch, mặt số gọn nhẹ – dành cho cặp đôi yêu thích sự cổ điển.'],
+        ];
+
+        foreach ($products as [$name, $image, $price, $description]) {
+            DB::table('products')->insert([
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'image' => $image,
+                'category_id' => $category->id,
+                'brand_id' => $brand->id,
+                'warranty_months' => 12,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }    
+
+
+
+//---------------------------Rolex cặp--------------------------
+        $category = Category::where('name', 'Cặp đôi')->first();
+        $brand = Brand::where('name', 'Rolex')->first();
+
+        if (!$category || !$brand) {
+            $this->command->error('Không tìm thấy categories "Cặp đôi" hoặc brands "Casio"!');
+            return;
+        }
+
+        $products = [
+            ['Rolex Couple Oyster Perpetual', 'RolexCouple1.jpg', 755000000, 'Thiết kế tối giản, dây thép không gỉ, mặt số xanh lam cho nam và trắng cho nữ – biểu tượng cho sự đồng điệu.'],
+            ['Rolex Datejust Silver Duo', 'RolexCouple2.jpg', 628000000, 'Cặp đôi dây Jubilee cổ điển, mặt số bạc sang trọng – phù hợp với cặp đôi yêu sự thanh lịch vượt thời gian.'],
+            ['Rolex Everose Gold Harmony', 'RolexCouple3.webp', 845000000, 'Màu vàng hồng Everose đặc trưng, phối dây kim loại demi – dành cho những cặp đôi đam mê sự sang trọng.'],
+            ['Rolex Two-Tone Datejust Pair', 'RolexCouple4.jpg', 699000000, 'Cặp đôi phối vàng và thép không gỉ, mặt số viền khía sang trọng, đồng điệu nhưng vẫn cá tính riêng.'],
+            ['Rolex Elegant Blue & Pink Set', 'RolexCouple5.webp', 705000000, 'Mặt số xanh cho nam và hồng cho nữ, kết hợp dây Oyster truyền thống – thể hiện sự khác biệt hài hòa.'],
+        ];
+
+
+        foreach ($products as [$name, $image, $price, $description]) {
+            DB::table('products')->insert([
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'image' => $image,
+                'category_id' => $category->id,
+                'brand_id' => $brand->id,
+                'warranty_months' => 12,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }    
+
+
+
+//---------------------------Rado cặp--------------------------
+        $category = Category::where('name', 'Cặp đôi')->first();
+        $brand = Brand::where('name', 'Rado')->first();
+
+        if (!$category || !$brand) {
+            $this->command->error('Không tìm thấy categories "Cặp đôi" hoặc brands "Casio"!');
+            return;
+        }
+
+        $products = [
+            ['Rado Couple Centrix Black', 'RadoCouple1.webp', 47800000, 'Cặp đôi Centrix mặt đen sang trọng, dây ceramic – biểu tượng hiện đại và bền bỉ.'],
+            ['Rado True Square Pair', 'RadoCouple2.jpg', 52400000, 'Thiết kế mặt vuông độc đáo với dây ceramic trắng, dành cho cặp đôi yêu sự phá cách tinh tế.'],
+            ['Rado Florence Classic Duo', 'RadoCouple3.jpg', 45200000, 'Dòng Florence thanh lịch với mặt số tối giản, dây thép không gỉ, phù hợp phong cách trang nhã.'],
+        ];
+
+
+        foreach ($products as [$name, $image, $price, $description]) {
+            DB::table('products')->insert([
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'image' => $image,
+                'category_id' => $category->id,
+                'brand_id' => $brand->id,
+                'warranty_months' => 12,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }    
+
+
+
+
+//---------------------------Citizen cặp--------------------------
+        $category = Category::where('name', 'Cặp đôi')->first();
+        $brand = Brand::where('name', 'Citizen')->first();
+
+        if (!$category || !$brand) {
+            $this->command->error('Không tìm thấy categories "Cặp đôi" hoặc brands "Casio"!');
+            return;
+        }
+
+        $products = [
+            ['Citizen Couple Eco-Drive AW1234-83P', 'CitizenCouple.jpg', 8350000, 'Nam AW1234 mặt đen, nữ AW1234 mặt bạc – bộ đôi Citizen Eco‑Drive sạc năng lượng ánh sáng, không dùng pin.'],
+            ];
+
+
+        foreach ($products as [$name, $image, $price, $description]) {
+            DB::table('products')->insert([
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'image' => $image,
+                'category_id' => $category->id,
+                'brand_id' => $brand->id,
+                'warranty_months' => 12,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }    
+
+
+
+
+//---------------------------Citizen cặp--------------------------
+        $category = Category::where('name', 'Cặp đôi')->first();
+        $brand = Brand::where('name', 'Seiko')->first();
+
+        if (!$category || !$brand) {
+            $this->command->error('Không tìm thấy categories "Cặp đôi" hoặc brands "Casio"!');
+            return;
+        }
+
+       $products = [
+    ['Seiko 5 Classic Black-Gold Pair', 'SeikoCouple1.jpg', 3000000, 'Nam mặt đen, nữ mặt vàng demi, dây thép mạ vàng và bạc – phong cách trang nhã.'],
+    ['Seiko 5 Silver-Gold Two-Tone Set', 'SeikoCouple2.webp', 3200000, 'Mặt trắng & trắng, dây thép hai tầng vàng‑bạc – đôi hoàn hảo cho mọi sự kiện.'],
+    ['Seiko SUR525P1 & SUR531P1', 'SeikoCouple3.jpg', 2800000, 'Nam SUR525P1 xanh dương và nữ SUR531P1 trắng, thiết kế nhẹ nhàng, kính sapphire chất lượng cao.' ],
+    ['Seiko SRP/SRP His & Hers Military', 'SeikoCouple4.jpg', 3500000, 'Nam SRP227 & nữ SRP189 – phong cách quân đội, tự động (automatic), đồng bộ dây và bộ máy.' ],
+];
+
+
+
+        foreach ($products as [$name, $image, $price, $description]) {
+            DB::table('products')->insert([
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'image' => $image,
+                'category_id' => $category->id,
+                'brand_id' => $brand->id,
+                'warranty_months' => 12,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }   
     }
 }

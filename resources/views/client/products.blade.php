@@ -12,7 +12,7 @@
 <section class="product-page">
     <div class="container">
         <div class="product-page-top row">
-            <p><a href="{{ route('home') }}">Trang chủ</a></p> <span>&#10230;</span>
+            <p><a href="{{ route('client.home') }}">Trang chủ</a></p> <span>&#10230;</span>
             @if(isset($currentCategory))
                 <p><a href="{{ route('products.filter', ['category' => Str::slug($currentCategory->name)]) }}">{{ $currentCategory->name }}</a></p> <span>&#10230;</span>
             @endif
@@ -52,6 +52,10 @@
                         <option value="7000000-10000000" {{ request('price_range') == '7000000-10000000' ? 'selected' : '' }}>7 - 10 triệu</option>
                         <option value="10000000-30000000" {{ request('price_range') == '10000000-30000000' ? 'selected' : '' }}>10 - 30 triệu</option>
                         <option value="30000000-50000000" {{ request('price_range') == '30000000-50000000' ? 'selected' : '' }}>30 - 50 triệu</option>
+                        <option value="50000000-70000000" {{ request('price_range') == '50000000-70000000' ? 'selected' : '' }}>5 - 7 triệu</option>
+                        <option value="70000000-100000000" {{ request('price_range') == '70000000-100000000' ? 'selected' : '' }}>7 - 10 triệu</option>
+                        <option value="100000000-300000000" {{ request('price_range') == '100000000-300000000' ? 'selected' : '' }}>10 - 30 triệu</option>
+                        <option value="300000000-500000000" {{ request('price_range') == '300000000-500000000' ? 'selected' : '' }}>30 - 50 triệu</option>
                         <option value="50000000-100000000" {{ request('price_range') == '50000000-100000000' ? 'selected' : '' }}>50 - 100 triệu</option>
                         <option value="100000000-200000000" {{ request('price_range') == '100000000-200000000' ? 'selected' : '' }}>100 - 200 triệu</option>
                         <option value="200000000-300000000" {{ request('price_range') == '200000000-300000000' ? 'selected' : '' }}>200 - 300 triệu</option>
@@ -73,22 +77,35 @@
                         </option>
                     </select>
                 </div>
-
-                {{-- Danh sách sản phẩm --}}
+                                {{-- Danh sách sản phẩm --}}
                 <div class="product-page-right-content">
                     @forelse($products as $product)
                         <div class="product-page-right-content-item">
-                            <a href="javascript:void(0);" class="product-quick-view" data-slug="{{ $product->slug }}">
-                                <img src="{{ asset('storage/Watch/Watch_nu/' . $product->image) }}" alt="{{ $product->name }}">
-                                <h1>{{ $product->name }}</h1>
-                                <p>{{ number_format($product->price, 0, ',', '.') }}<sup>đ</sup></p>
+                            @php
+                                $categoryFolder = 'Watch/Watch_nu'; // mặc định
+
+                                if (isset($product->category)) {
+                                    $slug = \Illuminate\Support\Str::slug($product->category->name);
+
+                                    if ($slug === 'nam') {
+                                        $categoryFolder = 'Watch/Watch_nam';
+                                    } elseif ($slug === 'cap-doi') {
+                                        $categoryFolder = 'Watch/Watch_cap';
+                                    }
+                                }
+                            @endphp
+                             <a href="javascript:void(0);" class="product-quick-view" data-slug="{{ $product->slug }}">
+                            <img src="{{ asset('storage/' . $categoryFolder . '/' . $product->image) }}" alt="{{ $product->name }}">
+                            <h1>{{ $product->name }}</h1>
+                            <p>{{ number_format($product->price, 0, ',', '.') }}<sup>đ</sup></p>
                             </a>
                         </div>
-
                     @empty
                         <p class="no-product-message">Không có sản phẩm nào.</p>
                     @endforelse
                 </div>
+
+
 
                 {{-- Phân trang --}}
                 <div class="product-page-right-bottom row">
@@ -116,4 +133,3 @@
     <script src="{{ asset('js/client/app.js') }}" defer></script>
     <script src="{{ asset('js/client/quickview.js') }}" defer></script>
 @endsection
-

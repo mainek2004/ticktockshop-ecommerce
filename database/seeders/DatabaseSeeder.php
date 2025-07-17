@@ -30,7 +30,10 @@ class DatabaseSeeder extends Seeder
             ProductsSeeder::class,
             WatchStrapsSeeder::class,
             WatchBoxesSeeder::class,
-            GlassTypesSeeder::class
+            WatchGlassesSeeder::class,
+            OrdersSeeder::class,
+            OrderItemsSeeder::class,
+            WarrantiesSeeder::class,
         ]);
     }
 }

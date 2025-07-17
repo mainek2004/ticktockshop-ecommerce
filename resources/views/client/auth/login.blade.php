@@ -2,9 +2,16 @@
     <form action="{{ route('client.login') }}" method="POST">
         @csrf
         <h3>Đăng nhập</h3>
-         @if (session('error'))
+        
+        <div class="warranty-warning" style="color: red; margin-bottom: 10px; display: none;">
+            Vui lòng đăng nhập để tra cứu bảo hành.
+        </div>
+
+        @if ($errors->any() && session('login_error'))
             <div style="color: red; margin-bottom: 10px">
-                {{ session('error') }}
+                @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                @endforeach
             </div>
         @endif
         <input type="text" name="email" placeholder="Email đăng nhập" required>

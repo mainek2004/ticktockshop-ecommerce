@@ -8,6 +8,9 @@
     <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/client/products.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/client/accessories.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/client/warranty.css') }}">
+
     @if (session('error'))
         <meta name="login-error" content="1">
     @endif
@@ -51,22 +54,22 @@
             </li>
             <li> <a href="">CẶP ĐÔI</a>
                 <ul class="sub_Doi">
-                    <li><a href="">Casio cặp</a></li>
-                    <li><a href="">Rolex cặp</a></li>
-                    <li><a href="">Citizen cặp</a></li>
-                    <li><a href="">Rado cặp</a></li>
-                    <li><a href="">Seiko cặp</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'cap-doi', 'brand' => 'casio']) }}">Casio đôi</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'cap-doi', 'brand' => 'rolex']) }}">Rolex đôi</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'cap-doi', 'brand' => 'rado']) }}">Rado đôi</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'cap-doi', 'brand' => 'citizen']) }}">Citizen đôi</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'cap-doi', 'brand' => 'seiko']) }}">Seiko đôi</a></li>
                 </ul>
             </li>
             <li> <a href="">PHỤ KIỆN</a> 
                 <ul class="sub_pk">
-                    <li><a href="">Dây đeo đồng hồ</a></li>
-                    <li><a href="">Hộp đựng đồng hồ</a></li>
-                    <li><a href="">Kính cường lực</a></li>
+                    <li><a href="{{ route('accessories.straps') }}">Dây đeo</a></li>
+                    <li><a href="{{ route('accessories.boxes') }}">Hộp Đựng</a></li>
+                    <li><a href="{{ route('accessories.glasses') }}">Kính cường lực</a></li>
 
                 </ul>
             </li>
-            <li> <a href="">THÔNG TIN BẢO HÀNH</a> </li>
+            <li> <a href="{{ route('warranty.form') }}">THÔNG TIN BẢO HÀNH</a> </li>
         </div>
 
         <div class="header_other">
@@ -136,11 +139,14 @@
         </div>
     </section>
 
+
     <main style="margin-top: 100px">
         @yield('content')
     </main>
 
-    <section class="footer">
+
+<section class="footer">
+
         <div class="footer-container">
             <p>Tải ứng dụng TickTock</p>
             <div class="app-google">
@@ -172,7 +178,8 @@
                 @Ivymoda All rights reserved
             </div>
         </div>
-     </section>
+     </section> 
+
     <script src="{{ asset('js/client/home.js') }}"></script>
     <script src="{{ asset('js/client/app.js') }}"></script>
     <script>
