@@ -9,6 +9,10 @@ a {
     text-decoration: none;
     color: black;
 }
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
 header {
     display: flex;
     justify-content: space-between;
@@ -448,7 +452,3 @@ footer{
 .logout-btn i {
     font-size: 15px;
 }
-
-
-
-

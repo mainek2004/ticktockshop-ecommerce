@@ -1,4 +1,4 @@
-div class="register-form" id="register-form" style="display: none;">
+<div class="register-form" id="register-form" style="display: none;">
     <form action="{{ route('client.register') }}" method="POST">
         @csrf
         <h3>Đăng ký</h3>

@@ -1,4 +1,4 @@
-@extends('client.layouts.app')
+@extends('client.home')
 
 @section('title')
     @if(isset($currentBrand) && isset($currentCategory))
@@ -48,10 +48,10 @@
                         <option value="0-1000000" {{ request('price_range') == '0-1000000' ? 'selected' : '' }}>Dưới 1 triệu</option>
                         <option value="1000000-3000000" {{ request('price_range') == '1000000-3000000' ? 'selected' : '' }}>1 - 3 triệu</option>
                         <option value="3000000-5000000" {{ request('price_range') == '3000000-5000000' ? 'selected' : '' }}>3 - 5 triệu</option>
-                        <option value="50000000-70000000" {{ request('price_range') == '50000000-70000000' ? 'selected' : '' }}>5 - 7 triệu</option>
-                        <option value="70000000-100000000" {{ request('price_range') == '70000000-100000000' ? 'selected' : '' }}>7 - 10 triệu</option>
-                        <option value="100000000-300000000" {{ request('price_range') == '100000000-300000000' ? 'selected' : '' }}>10 - 30 triệu</option>
-                        <option value="300000000-500000000" {{ request('price_range') == '300000000-500000000' ? 'selected' : '' }}>30 - 50 triệu</option>
+                        <option value="5000000-7000000" {{ request('price_range') == '5000000-7000000' ? 'selected' : '' }}>5 - 7 triệu</option>
+                        <option value="7000000-10000000" {{ request('price_range') == '7000000-10000000' ? 'selected' : '' }}>7 - 10 triệu</option>
+                        <option value="10000000-30000000" {{ request('price_range') == '10000000-30000000' ? 'selected' : '' }}>10 - 30 triệu</option>
+                        <option value="30000000-50000000" {{ request('price_range') == '30000000-50000000' ? 'selected' : '' }}>30 - 50 triệu</option>
                         <option value="50000000-100000000" {{ request('price_range') == '50000000-100000000' ? 'selected' : '' }}>50 - 100 triệu</option>
                         <option value="100000000-200000000" {{ request('price_range') == '100000000-200000000' ? 'selected' : '' }}>100 - 200 triệu</option>
                         <option value="200000000-300000000" {{ request('price_range') == '200000000-300000000' ? 'selected' : '' }}>200 - 300 triệu</option>
@@ -78,10 +78,13 @@
                 <div class="product-page-right-content">
                     @forelse($products as $product)
                         <div class="product-page-right-content-item">
-                            <img src="{{ asset('storage/Watch/' . $product->image) }}" alt="{{ $product->name }}">
-                            <h1>{{ $product->name }}</h1>
-                            <p>{{ number_format($product->price, 0, ',', '.') }}<sup>đ</sup></p>
+                            <a href="javascript:void(0);" class="product-quick-view" data-slug="{{ $product->slug }}">
+                                <img src="{{ asset('storage/Watch/Watch_nu/' . $product->image) }}" alt="{{ $product->name }}">
+                                <h1>{{ $product->name }}</h1>
+                                <p>{{ number_format($product->price, 0, ',', '.') }}<sup>đ</sup></p>
+                            </a>
                         </div>
+
                     @empty
                         <p class="no-product-message">Không có sản phẩm nào.</p>
                     @endforelse
@@ -100,4 +103,17 @@
         </div>
     </div>
 </section>
+    <!-- Quick View Modal -->
+<div id="quickViewModal" class="modal" style="display: none;">
+        <div id="quick-view-body">
+            <!-- Nội dung sản phẩm sẽ được nạp vào đây bằng AJAX -->
+        </div>
+</div>
+
 @endsection
+
+@section('scripts')
+    <script src="{{ asset('js/client/app.js') }}" defer></script>
+    <script src="{{ asset('js/client/quickview.js') }}" defer></script>
+@endsection
+

@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TickTock_Shop</title>
-    <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
+    <title>@yield('title', 'TickTock Shop')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
-
-
+    <link rel="stylesheet" href="{{ asset('css/client/products.css') }}">
+    @if (session('error'))
+        <meta name="login-error" content="1">
+    @endif
+    @if (session('register_error'))
+    <meta name="register-error" content="1">
+    @endif
 </head>
 <body>
     <header>
@@ -26,16 +31,15 @@
                     <li><a href="">Seiko </a></li>
                 </ul>
             </li>
-            <li><a href="#">NỮ</a>
+            <li> <a href="">NỮ</a>
                 <ul class="sub_Nu">
                     <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'casio']) }}">Casio nữ</a></li>
                     <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'rolex']) }}">Rolex nữ</a></li>
-                    <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'rado']) }}">Rado nữ</a></li>
                     <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'citizen']) }}">Citizen nữ</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'rado']) }}">Rado nữ</a></li>
                     <li><a href="{{ route('products.filter', ['category' => 'nu', 'brand' => 'seiko']) }}">Seiko nữ</a></li>
                 </ul>
             </li>
-
             <li> <a href="">NAM</a> 
                 <ul class="sub_Nam">
                     <li><a href="">Casio nam</a></li>
@@ -54,8 +58,15 @@
                     <li><a href="">Seiko cặp</a></li>
                 </ul>
             </li>
-            <li> <a title="Phụ kiện" href="">PHỤ KIỆN</a> </li>
-            <li> <a href="">THÔNG TIN</a> </li>
+            <li> <a href="">PHỤ KIỆN</a> 
+                <ul class="sub_pk">
+                    <li><a href="">Dây đeo đồng hồ</a></li>
+                    <li><a href="">Hộp đựng đồng hồ</a></li>
+                    <li><a href="">Kính cường lực</a></li>
+
+                </ul>
+            </li>
+            <li> <a href="">THÔNG TIN BẢO HÀNH</a> </li>
         </div>
 
         <div class="header_other">
@@ -69,46 +80,42 @@
                     </ul>
                 </div>
             </li>
-            <li> <a title="Đăng nhập" class="fa fa-user" id="login-icon" href=""></a>
+            
+            <li class="header-user">
+                    <i class="fa fa-user"></i>
+
+                    @auth
+                        <span class="user-name">{{ Auth::user()->name }}</span>
+                    @else
+                        <a title="Đăng nhập" id="login-icon" href="javascript:void(0);">Đăng nhập</a>
+                    @endauth
+                </li>
+
+
+
                 <div class="overlay" id="login-overlay">
+                        {{-- Form đăng nhập --}}
+                        @include('client.auth.login')
 
-                    <!-- ------------------------------------Đăng nhập/ Đăng ký---------------------- -->
-                    <div class="login-form" id="login-form">
-                        <form>
-                            <h3>Đăng nhập</h3>
-                            <!-- required bắt buộc nhập  -->
-                            <input type="text" placeholder="Tên đăng nhập" required>     
-                            <input type="password" placeholder="Mật khẩu" required>
-                            <button class="btn-login" type="submit">Đăng nhập</button>
-                            <div class="register-link">
-                                <span>Chưa có tài khoản ?</span>
-                                <button class="dk" type="button" id="dangky">Đăng ký</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="register-form" id="register-form">
-                        <form>
-                            <h3>Đăng ký</h3>
-                            <input type="text" placeholder="Tên đăng ký" required>
-                            <input type="password" placeholder="Mật khẩu" required>
-                            <input type="password" placeholder="Xác nhận mật khẩu" required>
-                            <input type="email" placeholder="Gmail" required>
-                            <button class="btn-register">Đăng ký</button>
-                            <div class="login-link">
-                                <span>Quay lại đăng nhập ?</span>
-                                <button class="dn" type="button" id="dangnhap">Đăng nhập</button>
-                            </div>
-                        </form>
-                    </div>
-
+                        {{-- Form đăng ký --}}
+                        @include('client.auth.register')
                 </div>
- 
             </li>
             <li> <a  class="fa fa-shopping-bag" href=""></a></li>
+            
+            @auth
+                <li class="logout-item">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="logout-btn">
+                            <i class="fa fa-sign-out-alt"></i>
+                        </button>
+                    </form>
+                </li>
+            @endauth
+
         </div>
     </header>
-
     <section id="slide">
         <div class="aspect-ratio-169">
             <img src="{{ asset('storage/slide1.jpg')}}" alt="">
@@ -128,6 +135,10 @@
 
         </div>
     </section>
+
+    <main style="margin-top: 100px">
+        @yield('content')
+    </main>
 
     <section class="footer">
         <div class="footer-container">
@@ -162,9 +173,12 @@
             </div>
         </div>
      </section>
+    <script src="{{ asset('js/client/home.js') }}"></script>
+    <script src="{{ asset('js/client/app.js') }}"></script>
+    <script>
+    const IS_AUTHENTICATED = {{ auth()->check() ? 'true' : 'false' }};
+    </script>
+    <script src="{{ asset('js/layouts/auth.js') }}"></script>
+    @yield('scripts')
 </body>
-
-<script src="{{ asset('js/client/home.js') }}"></script>
-
-
 </html>

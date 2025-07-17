@@ -19,6 +19,9 @@ Route::get('/', function () {
 
     return view('client.home'); // fallback nếu chưa login
     })->name('home');
+    
+Route::get('/products', [ProductController::class, 'filterProducts'])->name('products.filter');
+Route::get('/quick-view/{slug}', [ProductController::class, 'quickView']);
 
 
     //User routes
@@ -46,4 +49,3 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-Route::get('/products', [ProductController::class, 'filterProducts'])->name('products.filter');
