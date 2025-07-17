@@ -3,12 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginAuthController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AccessoriesController;
+use App\Http\Controllers\WarrantyController;
+
+
 
 
 // Route::get('/', function () {
-//     return view('client.home');
-//     //return view('admin.dashboard');
-//     //return view('admin.auth.dashboard');
+//     //return view('client.home');
+//     return view('admin.dashboard');
 // });
 
 
@@ -50,4 +54,19 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
+Route::get('/products/filter', [ProductController::class, 'filterProducts'])->name('products.filter');
 
+
+Route::get('/accessories/straps', [AccessoriesController::class, 'showStraps'])->name('accessories.straps');
+Route::get('/accessories/boxes', [AccessoriesController::class, 'showBoxes'])->name('accessories.boxes');
+Route::get('/accessories/glasses', [AccessoriesController::class, 'showGlasses'])->name('accessories.glasses');
+
+
+// Trang bảo hành khách
+Route::get('/warranty', [WarrantyController::class, 'showClient'])->name('warranty.form');
+
+// Trang bảo hành admin
+Route::get('/admin/warranty', [WarrantyController::class, 'showAdmin'])->middleware(['auth', 'role:admin'])->name('admin.warranty');
+
+// Xử lý tra cứu từ form
+Route::post('/warranty/lookup', [WarrantyController::class, 'lookup'])->name('warranty.lookup');
