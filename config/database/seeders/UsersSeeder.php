@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
 class UsersSeeder extends Seeder
 {
     /**
@@ -19,7 +20,6 @@ class UsersSeeder extends Seeder
            User::truncate();
 
     DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
         User::create([
         'name' => 'admin',
         'email' => 'admin@gmail.com',

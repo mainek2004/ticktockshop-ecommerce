@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/client/cart.css') }}">
 
 </head>
 <body>
@@ -73,7 +74,7 @@
             <li> <a class="fa fa-shopping-bag" href="#"></a></li>
         </div>
     </header>
-    <section id="slide">
+    <!-- <section id="slide">
         <div class="aspect-ratio-169">
             <img src="{{ asset('storage/slide1.jpg')}}" alt="">
             <img src="{{ asset('storage/slide2.jpg')}}" alt="">
@@ -91,7 +92,7 @@
 
 
         </div>
-    </section>
+    </section> -->
 
     <main style="margin-top: 100px">
         @yield('content')

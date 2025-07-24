@@ -19,12 +19,20 @@ class LoginAuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|regex:/@gmail\.com$/i',
             'password' => 'required'
+        ], [
+            'email.regex' => 'Email phải có đuôi @gmail.com',
+            'email.required' => 'Vui lòng nhập email',
+            'password.required' => 'Vui lòng nhập mật khẩu',
         ]);
 
-        $credentials = $request->only('email', 'password'); // KHÔNG thêm role
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('login_error', true);
+        }
+
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -35,12 +43,13 @@ class LoginAuthController extends Controller
                 return redirect()->route('client.home');
             } else {
                 Auth::logout();
-                return back()->with('error', 'Tài khoản không có quyền truy cập');
+                return back()->with('error', 'Tài khoản không có quyền truy cập')->with('login_error', true);
             }
         }
-        return back()->with('error', 'Email hoặc mật khẩu không đúng');
 
+        return back()->with('error', 'Email hoặc mật khẩu không đúng')->withInput()->with('login_error', true);
     }
+
 
     public function register(Request $request)
     {
@@ -67,7 +76,4 @@ class LoginAuthController extends Controller
 
         return redirect()->route('client.home');
     }
-
-
 }
-
