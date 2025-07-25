@@ -7,9 +7,17 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccessoriesController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 
 
+// Route::get('/', function () {
+//     if (request()->has('checkout')) {
+//         return view('client.checkout');
+//     }
+
+//     return view('client.home');
+// });
 
 
 Route::get('/', function () { 
@@ -82,7 +90,9 @@ Route::get('/cart/clear', function () {
     return 'Đã xoá giỏ hàng';
 });
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
 
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 // Lịch sử tìm kiếm

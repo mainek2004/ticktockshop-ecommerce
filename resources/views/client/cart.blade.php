@@ -77,14 +77,15 @@
         </div>
 
         <div class="header_other">
-            <li> <input placeholder="Tìm kiếm" type="text"> <i class="fas fa-search"></i>
-                <div class="search-history">
-                    <h3 class="search-heading">Lịch sử tìm kiếm</h3>
-                    <ul class="search-history-list">
-                        <li class="item"> <a href="">Casio</a> </li>
-                        <li class="item"> <a href="">Rolex</a> </li>
+            <li class="search-wrapper">
+                <form id="searchForm" action="{{ route('products.filter') }}" method="GET" class="search-form">
+                    <input id="searchInput" name="keyword" placeholder="Tìm kiếm" type="text" autocomplete="off">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
 
-                    </ul>
+                <div class="search-history" id="searchHistory">
+                    <h3 class="search-heading">Lịch sử tìm kiếm</h3>
+                    <ul class="search-history-list"></ul>
                 </div>
             </li>
             
@@ -108,12 +109,14 @@
                         @include('client.auth.register')
                 </div>
             </li>
-            <li class="cart-icon">
-                <a class="fa fa-shopping-bag" href="{{ route('cart.index') }}"></a>
-                <span class="cart-count">
-                    {{ array_sum(session('cart') ? array_column(session('cart'), 'quantity') : []) }}
-                </span>
-            </li>
+            <a href="{{ route('cart.index') }}" class="cart-icon">
+                <i class="fa fa-shopping-bag"></i>
+                @if(session('cart') && array_sum(array_column(session('cart'), 'quantity')) > 0)
+                    <span class="cart-count">
+                        {{ array_sum(array_column(session('cart'), 'quantity')) }}
+                    </span>
+                @endif
+            </a>
             
             @auth
                 <li class="logout-item">
@@ -220,23 +223,14 @@
                     </tr>
                 </table>
 
-                <div class="cart-content-right-text">
-                    <p>Bạn sẽ được miễn phí ship nếu tổng đơn hàng đủ điều kiện</p>
-                    <p style="color: red; font-weight: bold;">
-                        Mua thêm <span style="font-size: 18px;">
-                            {{ number_format(max(0, 8900000 - $cartTotal), 0, ',', '.') }}
-                        </span> để được miễn phí
-                    </p>
-                </div>
-
                 <div class="cart-content-right-button">
-                    <a href="{{ route('checkout.index') }}"><button>Đặt Hàng</button></a>
+                    <a href="{{ route('checkout') }}"><button>Đặt Hàng</button></a>
                 </div>
 
                 <div class="cart-content-right-dangnhap">
                     @auth
                         <p>Tài khoản: {{ auth()->user()->name }}</p>
-                        <p>Chào mừng bạn quay lại! Bạn sẽ được tích điểm thành viên.</p>
+                        <p>Chào mừng bạn quay lại!</p>
                     @else
                         <p>Hãy <a href="{{ route('client.login') }}"; style ="color: blue; font-weight: bold;" >Đăng nhập</a> để được tích điểm thành viên</p>
                     @endauth

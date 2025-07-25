@@ -12,8 +12,7 @@
 <section class="product-page">
         <div class="container">
             <div class="product-page-top row">
-                <p><a href="{{ route('client.home') }}">Trang chủ</a></p> <span>&#10230;</span>
-
+                <p><a href="{{ route('home') }}">Trang chủ</a></p> <span>&#10230;</span>
                 @if(isset($keyword) && $keyword)
                     <p>{{ $keyword }}</p>
 

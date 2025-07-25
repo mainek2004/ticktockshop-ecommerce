@@ -188,6 +188,7 @@
     border-radius: 6px;
     padding: 10px 20px;
     transition: all 0.3s ease;
+    margin-top: 10px;
 }
 .cart-content-right-button button:last-child:hover {
     background-color: #c62828; 
