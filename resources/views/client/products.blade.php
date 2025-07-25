@@ -86,6 +86,7 @@
 
                                 if (isset($product->category)) {
                                     $slug = \Illuminate\Support\Str::slug($product->category->name);
+
                                     if ($slug === 'nam') {
                                         $categoryFolder = 'Watch/Watch_nam';
                                     } elseif ($slug === 'cap-doi') {
@@ -103,7 +104,6 @@
                         <p class="no-product-message">Không có sản phẩm nào.</p>
                     @endforelse
                 </div>
-
 
 
                 {{-- Phân trang --}}

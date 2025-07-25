@@ -10,6 +10,7 @@
             @forelse($items as $strap)
                 <div class="col-3">
                     <div class="product-card">
+                        <a href="javascript:void(0);" class="product-quick-view" data-slug="{{ $strap->slug }}" data-type="straps">
                         <img src="{{ asset('storage/accessories/straps/' . $strap->image) }}" alt="{{ $strap->name }}" class="product-image">
                         <h3 class="product-name">{{ $strap->name }}</h3>
                         <p class="product-price">{{ number_format($strap->price, 0, ',', '.') }}₫</p>
@@ -24,6 +25,7 @@
             @forelse($items as $box)
                 <div class="col-3">
                     <div class="product-card">
+                        <!-- <a href="javascript:void(0);" class="product-quick-view" data-slug="{{ $box->slug }}" data-type="boxes"> -->
                         <img src="{{ asset('storage/accessories/boxes/' . $box->image) }}" alt="{{ $box->name }}" class="product-image">
                         <h3 class="product-name">{{ $box->name }}</h3>
                         <p class="product-price">{{ number_format($box->price, 0, ',', '.') }}₫</p>
@@ -38,6 +40,7 @@
             @forelse($items as $glass)
                 <div class="col-3">
                     <div class="product-card">
+                        <!-- <a href="javascript:void(0);" class="product-quick-view" data-slug="{{ $glass->slug }}" data-type="glasses"> -->
                         <img src="{{ asset('storage/accessories/glass/' . $glass->image) }}" alt="{{ $glass->name }}" class="product-image">
                         <h3 class="product-name">{{ $glass->name }}</h3>
                         <p class="product-price">{{ number_format($glass->price, 0, ',', '.') }}₫</p>
@@ -52,4 +55,6 @@
 
     </div>
 </div>
+
+
 @endsection
