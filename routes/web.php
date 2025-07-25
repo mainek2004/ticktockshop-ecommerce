@@ -6,14 +6,11 @@ use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccessoriesController;
 use App\Http\Controllers\WarrantyController;
+use App\Http\Controllers\CartController;
 
 
 
 
-// Route::get('/', function () {
-//     //return view('client.home');
-//     return view('admin.dashboard');
-// });
 
 Route::get('/', function () { 
     if (auth()->check()) {
@@ -29,6 +26,7 @@ Route::get('/', function () {
     
 Route::get('/products', [ProductController::class, 'filterProducts'])->name('products.filter');
 Route::get('/quick-view/{slug}', [ProductController::class, 'quickView']);
+Route::get('/accessories/quick-view/{type}/{id}', [AccessoriesController::class, 'quickView']);
 
 
     //User routes
@@ -73,3 +71,20 @@ Route::get('/admin/warranty', [WarrantyController::class, 'showAdmin'])->middlew
 
 // Xử lý tra cứu từ form
 Route::post('/warranty/lookup', [WarrantyController::class, 'lookup'])->name('warranty.lookup');
+
+// Giỏ hàng
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/remove/{key}', [CartController::class, 'remove'])->name('cart.remove');
+// Xóa giỏ hàng 
+Route::get('/cart/clear', function () {
+    session()->forget('cart');
+    return 'Đã xoá giỏ hàng';
+});
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+// Lịch sử tìm kiếm
+Route::get('/search', [ProductController::class, 'unifiedSearch'])->name('search.all');
+

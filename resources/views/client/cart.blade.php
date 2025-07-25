@@ -1,16 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'TickTock Shop')</title>
+    <title>@yield('title', 'Giỏ hàng')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="{{ asset('storage/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/client/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/client/products.css') }}">
     <link rel="stylesheet" href="{{ asset('css/client/accessories.css') }}">
     <link rel="stylesheet" href="{{ asset('css/client/warranty.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/client/cart.css') }}">
+
 
     @if (session('error'))
         <meta name="login-error" content="1">
@@ -45,13 +48,14 @@
                 </ul>
             </li>
             <li> <a href="">NAM</a> 
-                <ul class="sub_Nu">
-                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'casio']) }}">Casio nữ</a></li>
-                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'rolex']) }}">Rolex nữ</a></li>
-                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'citizen']) }}">Citizen nữ</a></li>
-                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'rado']) }}">Rado nữ</a></li>
-                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'seiko']) }}">Seiko nữ</a></li>
+                <ul class="sub_Nam">
+                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'casio']) }}">Casio nam</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'rolex']) }}">Rolex nam</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'citizen']) }}">Citizen nam</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'rado']) }}">Rado nam</a></li>
+                    <li><a href="{{ route('products.filter', ['category' => 'nam', 'brand' => 'seiko']) }}">Seiko nam</a></li>
                 </ul>
+            </li>
             <li> <a href="">CẶP ĐÔI</a>
                 <ul class="sub_Doi">
                     <li><a href="{{ route('products.filter', ['category' => 'cap-doi', 'brand' => 'casio']) }}">Casio đôi</a></li>
@@ -73,18 +77,17 @@
         </div>
 
         <div class="header_other">
-            <li class="search-wrapper">
-                <form id="searchForm" action="{{ route('products.filter') }}" method="GET" class="search-form">
-                    <input id="searchInput" name="keyword" placeholder="Tìm kiếm" type="text" autocomplete="off">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>
-
-                <div class="search-history" id="searchHistory">
+            <li> <input placeholder="Tìm kiếm" type="text"> <i class="fas fa-search"></i>
+                <div class="search-history">
                     <h3 class="search-heading">Lịch sử tìm kiếm</h3>
-                    <ul class="search-history-list"></ul>
+                    <ul class="search-history-list">
+                        <li class="item"> <a href="">Casio</a> </li>
+                        <li class="item"> <a href="">Rolex</a> </li>
+
+                    </ul>
                 </div>
             </li>
-           
+            
             <li class="header-user">
                     <i class="fa fa-user"></i>
 
@@ -105,16 +108,13 @@
                         @include('client.auth.register')
                 </div>
             </li>
-            <a href="{{ route('cart.index') }}" class="cart-icon">
-                <i class="fa fa-shopping-bag"></i>
-                @if(session('cart') && array_sum(array_column(session('cart'), 'quantity')) > 0)
-                    <span class="cart-count">
-                        {{ array_sum(array_column(session('cart'), 'quantity')) }}
-                    </span>
-                @endif
-            </a>
-
-
+            <li class="cart-icon">
+                <a class="fa fa-shopping-bag" href="{{ route('cart.index') }}"></a>
+                <span class="cart-count">
+                    {{ array_sum(session('cart') ? array_column(session('cart'), 'quantity') : []) }}
+                </span>
+            </li>
+            
             @auth
                 <li class="logout-item">
                     <form action="{{ route('logout') }}" method="POST">
@@ -128,30 +128,130 @@
 
         </div>
     </header>
-    <section id="slide">
-        <div class="aspect-ratio-169">
-            <img src="{{ asset('storage/slide1.jpg')}}" alt="">
-            <img src="{{ asset('storage/slide2.jpg')}}" alt="">
-            <img src="{{ asset('storage/slide3.png')}}" alt="">
-            <img src="{{ asset('storage/slide4.png')}}" alt="">
-            <img src="{{ asset('storage/slide5.jpg')}}" alt="">
-
+    
+@section('content')
+<section class="cart">
+    <div class="container">
+        {{-- Tiến trình 3 bước (Cart → Địa chỉ → Thanh toán) --}}
+        <div class="cart-top-wrap">
+            <div class="cart-top">
+                <div class="cart-top-cart cart-top-item">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="cart-top-adress cart-top-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="cart-top-payment cart-top-item">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                </div>
+            </div>
         </div>
-        <div class="dot-slide">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+    </div>
 
+    <div class="container">
+        <div class="cart-content row">
+            <div class="cart-content-left">
+                <table>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <!-- <th>Màu</th> -->
+                        <!-- <th>Size</th> -->
+                        <th>SL</th>
+                        <th>Thành tiền</th>
+                        <th>Xóa</th>
+                    </tr>
 
+                    @php
+                        $cartItems = session('cart') ?? [];
+                    @endphp
+
+                    @forelse ($cartItems as $key => $item)
+                        <tr>
+                            {{-- ✅ Hiển thị ảnh đúng folder theo loại --}}
+                            <td>
+                                <img src="{{ asset('storage/' . (
+                                            $item['type'] === 'product'
+                                                ? 'Watch/' . ($item['category'] === 'Nam' ? 'Watch_nam' : ($item['category'] === 'Cặp đôi' ? 'Watch_cap' : 'Watch_nu'))
+                                                : 'accessories/' . $item['type']
+                                        ) . '/' . $item['image']) }}"
+                                    alt="{{ $item['name'] }}">
+                            </td>
+
+                            <td><p>{{ $item['name'] }}</p></td>
+
+                            <td style="text-align: center;">
+                                <input type="number" value="{{ $item['quantity'] }}" min="1" data-id="{{ $item['id'] }}" class="cart-quantity-input">
+                            </td>
+
+                            <td><p>{{ number_format($item['price'] * $item['quantity'], 0, ',', '.') }} <sub>đ</sub></p></td>
+
+                            <td>
+                                <form action="{{ route('cart.remove', $key) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="remove-btn">X</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="5">Giỏ hàng trống.</td></tr>
+                    @endforelse 
+                </table>
+            </div>
+
+            {{-- Bên phải: Tóm tắt đơn hàng --}}
+            <div class="cart-content-right">
+                <table>
+                    <tr>
+                        <th colspan="2">TỔNG TIỀN GIỎ HÀNG</th>
+                    </tr>
+                    <tr>
+                        <td>Tổng sản phẩm</td>
+                        <td>{{ array_sum(array_column($cartItems, 'quantity')) }}</td> {{-- ✅ đúng --}}
+                    </tr>
+                    <tr>
+                        <td>TỔNG TIỀN HÀNG</td>
+                        <td><p>{{ number_format($cartTotal, 0, ',', '.') }} <sub>đ</sub></p></td>
+                    </tr>
+                    <tr>
+                        <td>Tạm tính</td>
+                        <td><p style="color: black; font-weight: bold;">{{ number_format($cartTotal, 0, ',', '.') }} <sub>đ</sub></p></td>
+                    </tr>
+                </table>
+
+                <div class="cart-content-right-text">
+                    <p>Bạn sẽ được miễn phí ship nếu tổng đơn hàng đủ điều kiện</p>
+                    <p style="color: red; font-weight: bold;">
+                        Mua thêm <span style="font-size: 18px;">
+                            {{ number_format(max(0, 8900000 - $cartTotal), 0, ',', '.') }}
+                        </span> để được miễn phí
+                    </p>
+                </div>
+
+                <div class="cart-content-right-button">
+                    <a href="{{ route('checkout.index') }}"><button>Đặt Hàng</button></a>
+                </div>
+
+                <div class="cart-content-right-dangnhap">
+                    @auth
+                        <p>Tài khoản: {{ auth()->user()->name }}</p>
+                        <p>Chào mừng bạn quay lại! Bạn sẽ được tích điểm thành viên.</p>
+                    @else
+                        <p>Hãy <a href="{{ route('client.login') }}"; style ="color: blue; font-weight: bold;" >Đăng nhập</a> để được tích điểm thành viên</p>
+                    @endauth
+                </div>
+            </div>
         </div>
-    </section>
+
+
 
 
     <main style="margin-top: 100px">
         @yield('content')
     </main>
+
+
 
 
     <section class="footer">
@@ -186,8 +286,8 @@
                 @Ivymoda All rights reserved
             </div>
         </div>
-     </section> 
-
+     </section>
+</body>
     <script src="{{ asset('js/client/home.js') }}"></script>
     <script src="{{ asset('js/client/app.js') }}"></script>
     <script>
